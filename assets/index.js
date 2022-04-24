@@ -1,11 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const managerQuestions = [
-    {
-        name: "name",
-        message: "What is the manager's name?",
-        type: "input",
-    },
+    { name: "name", message: "What is the manager's name?", type: "input" },
     { name: "empID", message: "What is the manager's employee ID?", type: "input" },
     { name: "email", message: "What is the manager's email?", type: "input" },
     { name: "officeNum", message: "What is the manager's office number?", type: "input" },
