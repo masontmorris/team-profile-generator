@@ -1,5 +1,8 @@
+// imports inquirer and fs modules
 const inquirer = require("inquirer");
 const fs = require("fs");
+
+// arrays of questions for each role
 const managerQuestions = [
     { name: "name", message: "What is the manager's name?", type: "input" },
     { name: "empID", message: "What is the manager's employee ID?", type: "input" },
@@ -10,7 +13,7 @@ const engineerQuestions = [
     { name: "name", message: "What is this engineer's name?", type: "input" },
     { name: "empID", message: "What is this engineer's employee ID?", type: "input" },
     { name: "email", message: "What is this engineer's email?", type: "input" },
-    { name: "github", message: "What is this engineer's github?", type: "input" },
+    { name: "github", message: "What is this engineer's Github username?", type: "input" },
 ];
 const internQuestions = [
     { name: "name", message: "What is this intern's name?", type: "input" },
@@ -18,14 +21,19 @@ const internQuestions = [
     { name: "email", message: "What is this intern's email?", type: "input" },
     { name: "school", message: "What school does this intern attend?", type: "input" },
 ];
+
+// array of menu options
 const menuOptions = {
     name: "menuSelection",
     message: "What would you like to do?",
     choices: ["Add an engineer.", "Add an intern.", "Finish building my team."],
     type: "list",
 };
+
+// array that will hold all of the team members
 var team = [];
 
+// classes for each role with methods to add to team array
 class Manager {
     constructor(name, empID, email, officeNumber) {
         this.name = name;
@@ -38,7 +46,6 @@ class Manager {
         team.push(this);
     }
 }
-
 class Engineer {
     constructor(name, empID, email, github) {
         this.name = name;
@@ -51,7 +58,6 @@ class Engineer {
         team.push(this);
     }
 }
-
 class Intern {
     constructor(name, empID, email, school) {
         this.name = name;
@@ -65,6 +71,7 @@ class Intern {
     }
 }
 
+// functions that create new team members based on role selection
 function newEngineer() {
     inquirer.prompt(engineerQuestions).then(function (answers) {
         var engineer = new Engineer(answers.name, answers.empID, answers.email, answers.github);
@@ -72,7 +79,6 @@ function newEngineer() {
         mainMenu();
     });
 }
-
 function newIntern() {
     inquirer.prompt(internQuestions).then(function (answers) {
         var intern = new Intern(answers.name, answers.empID, answers.email, answers.school);
@@ -81,6 +87,7 @@ function newIntern() {
     });
 }
 
+// function that creates html file using team array
 function buildTeam() {
     let teamCards = "";
     for (let i = 0; i < team.length; i++) {
@@ -164,6 +171,7 @@ function buildTeam() {
     });
 }
 
+// function that runs the main menu
 function mainMenu() {
     inquirer.prompt(menuOptions).then(function (answers) {
         // console.log(answer.menuSelection);
@@ -181,6 +189,7 @@ function mainMenu() {
     });
 }
 
+// function run on program start that creates manager and takes user to main menu
 function init() {
     inquirer.prompt(managerQuestions).then(function (answers) {
         var manager = new Manager(answers.name, answers.empID, answers.email, answers.officeNum);
