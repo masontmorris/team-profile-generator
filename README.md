@@ -19,6 +19,8 @@ Clone repository from Github.
 
 ## Usage
 
+[Check out the demo video!](https://youtu.be/rI7_ciVd5jA)
+
 Run index.js in Node.
 <a name="license"/>
 
