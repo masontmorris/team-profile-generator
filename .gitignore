@@ -106,3 +106,6 @@ dist
 .DS_Store
 
 /data/team.json
+
+index.html
+
